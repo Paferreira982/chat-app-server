@@ -1,5 +1,5 @@
 import { Entity } from "@/domain/@shared/entities/entity.abstract";
-import { UserBuildDto, UserEntityPropsType, UserPropsType } from "./types";
+import { UserBuildDto, UserEntityPropsType, UserPropsType, UserStatusType } from "./types";
 import Authenticator from "@/infra/auth/authenticator.interface";
 
 export class User extends Entity<UserPropsType> {
@@ -9,11 +9,12 @@ export class User extends Entity<UserPropsType> {
         email,
         password,
         profileImage,
+        state,
         createdAt,
         deletedAt,
         updatedAt,
     }: UserEntityPropsType) {
-        const props = { name, email , password, profileImage};
+        const props = { name, email , password, profileImage, state};
         super('User', { id, createdAt, deletedAt, updatedAt, props });
     }
 
@@ -39,6 +40,46 @@ export class User extends Entity<UserPropsType> {
             email,
             password,
             profileImage,
+            state: "offline",
+        });
+    }
+
+    /**
+     * With method.
+     * @description This method is used to build an existing user entity.
+     * @param id User id.
+     * @param name User name.
+     * @param email User email.
+     * @param password User password.
+     * @param profileImage User profile image.
+     * @param state User state.
+     * @param createdAt User creation date.
+     * @param deletedAt User deletion date.
+     * @param updatedAt User update date.
+     * @returns An user entity.
+     * @throws {DomainException} If the provided data is invalid.
+     */
+    public static with({
+        id,
+        name,
+        email,
+        password,
+        profileImage,
+        state,
+        createdAt,
+        deletedAt,
+        updatedAt,
+    }: UserEntityPropsType): User {
+        return new User({
+            id,
+            name,
+            email,
+            password,
+            profileImage,
+            state,
+            createdAt,
+            deletedAt,
+            updatedAt,
         });
     }
 
@@ -62,6 +103,10 @@ export class User extends Entity<UserPropsType> {
 
     public get profileImage(): string {
         return this.props.profileImage;
+    }
+
+    public get state(): UserStatusType {
+        return this.props.state;
     }
 }
 

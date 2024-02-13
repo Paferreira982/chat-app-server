@@ -17,7 +17,12 @@ class JsonWebToken implements Authenticator {
     }
 
     public async validate(token: string): Promise<boolean> {
-        return jwt.verify(token, this.secret) ? true : false;
+        try {
+            const verified = jwt.verify(token, this.secret);
+            return !!verified;
+        } catch (error) {
+            return false;
+        }
     }
 
     public async decode(token: string): Promise<UserAppStateType> {

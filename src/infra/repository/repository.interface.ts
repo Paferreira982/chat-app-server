@@ -3,7 +3,7 @@
  * @description Contract interface for Repository.
  * */
 export default interface RepositoryInterface<EntityPropsType, UpdatePropsType>{
-    create(data: EntityPropsType): Promise<EntityPropsType>;
+    create(data: Omit<EntityPropsType, "state">): Promise<EntityPropsType>;
     update(data: UpdatePropsType): Promise<EntityPropsType>;
     delete(id: string): Promise<boolean>;
     findById(id: string): Promise<(EntityPropsType) | null>;

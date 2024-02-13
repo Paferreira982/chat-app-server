@@ -1,11 +1,13 @@
-import { Server as SocketIoServer, Socket } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import http from 'http';
+import UserHandler from './handlers/user.handler';
+import { WebSocketInterface } from '..';
 
-class WebSocketServer {
-  private io: SocketIoServer;
+class WebSocketServer implements WebSocketInterface {
+  private io: Server;
 
   constructor(httpServer: http.Server) {
-    this.io = new SocketIoServer(httpServer, {
+    this.io = new Server(httpServer, {
       cors: {
         origin: '*',
         methods: ['GET', 'POST'],
@@ -16,14 +18,19 @@ class WebSocketServer {
     this.setupSocketEvents();
   }
 
+  public on(event: string, callback: (socket: any) => void): void {
+    this.io.on(event, callback);
+  }
+
+  public emit(event: string, data: any): void {
+    this.io.emit(event, data);
+  }
+
   private setupSocketEvents() {
     this.io.on('connection', (socket: Socket) => {
       console.log(`WebSocket client connected: ${socket.id}`);
 
-      socket.on('client:send-message', (message) => {
-        console.log(`Message received: ${message}`);
-        this.io.emit('server:message-recieved', JSON.parse(message));
-      });
+      UserHandler.register(this.io, socket);
 
       socket.on('disconnect', () => {
         console.log(`WebSocket client disconnected: ${socket.id}`);

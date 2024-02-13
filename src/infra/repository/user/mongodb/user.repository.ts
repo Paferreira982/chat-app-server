@@ -18,7 +18,7 @@ class UserRepository implements RepositoryInterface<UserEntityPropsType, UserUpd
         }
     }
 
-    public async create(data: UserEntityPropsType): Promise<UserEntityPropsType> {
+    public async create(data: Omit<UserEntityPropsType, "state">): Promise<UserEntityPropsType> {
         const UserModel = MongoDBDriver.conn.model('User');
         const instance = new UserModel(data);
         return await instance.save();

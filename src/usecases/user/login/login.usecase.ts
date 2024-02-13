@@ -24,11 +24,7 @@ export class LoginUsecase implements Usecase<UserLoginInputDto, UserLoginOutputD
         });
 
         return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            status: "online",
-            profileImage: user.profileImage,
+            ...user,
             token,
         }
     }
