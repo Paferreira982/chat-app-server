@@ -7,4 +7,4 @@ const port = process.env.PORT ? parseInt(process.env.PORT) : 4000;
 httpServer.start(port);
 
 const { server } = httpServer;
-const websocketServer = new WebSocketServer(server);
+export const SocketServer = new WebSocketServer(server);

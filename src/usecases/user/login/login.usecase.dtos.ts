@@ -1,8 +1,10 @@
-import { UserAppStateType } from "@/domain/user/entities/types";
+import { UserAppStateType, UserEntityPropsType } from "@/domain/user/entities/types";
 
 export type UserLoginInputDto = {
     email: string;
     password: string;
 }
 
-export type UserLoginOutputDto = UserAppStateType;
+export type UserLoginOutputDto = {
+    token: string
+} & UserEntityPropsType;

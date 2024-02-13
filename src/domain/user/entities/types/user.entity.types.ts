@@ -5,6 +5,7 @@ export type UserPropsType = {
     email: string;
     password: string;
     profileImage: string;
+    state: UserStatusType;
 }
 
 export type UserEntityPropsType = UserPropsType & EntityPropsType;
