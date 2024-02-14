@@ -18,8 +18,8 @@ Também é possível utilizar o Docker para rodar o MongoDB. Para isso, execute 
 
 Substitua `meu-mongodb` pelo nome que desejar para o container. 
 
-3. Instale as dependências
-```npm install ```
+3. Instale as dependências <br>
+```npm install```
 
 4. Configure as variáveis de ambiente.
 
@@ -31,8 +31,8 @@ Variáveis de ambiente:
 - `JWT_SECRET`: Chave secreta para a geração de tokens JWT. Padrão: secret;
 - `SALT_ROUNDS`: Número de rounds para a geração de hashes de senhas. Padrão: 10;
 
-5. Inicie o servidor em ambiente de desenvolvimento
-```npm dev ```
+5. Inicie o servidor em ambiente de desenvolvimento <br>
+```npm run dev```
 
 ## Arquitetura
 A arquitetura do projeto escolhida foi DDD (Domain-Driven Design), Clean Architecture, SOLID e princípios de arquitetura hexagonal. A estrutura de pastas do projeto é organizada da seguinte forma:
@@ -48,6 +48,19 @@ Inicialmente o projeto foi pensado para ser executado em um monolito, que atendi
 ### Backend
 O backend foi relativamente tranquilo de migrar, como todo o código estava bem modularizado, foi fácil separar o backend do frontend. Um benéficio de ter a separação do código em camadas, para seguir os princípios de arquitetura hexagonal, e também para facilitar a manutenção do código.
 
+Features entregues:
+- Autenticação de usuários;
+- Cadastro de usuários;
+- Envio de mensagens;
+- Arquitetura DDD, Clean Architecture, SOLID e princípios de arquitetura hexagonal;
+- Abstração de repositórios e serviços;
+- Schemas de validação de dados;
+- ORM para comunicação com o banco de dados;
+- WebSocket para comunicação em tempo real;
+- Tipagem de dados;
+- Tratamento de erros;
+- Criação da base para entidades, repositório e casos de uso (classes abstratas e interfaces);
+
 Features que foram planejadas, mas devido ao cenário de tempo, não foram implementadas:
 - Testes unitários;
 - Testes de integração;
@@ -59,3 +72,5 @@ Features que foram planejadas, mas devido ao cenário de tempo, não foram imple
 
 ## Conclusão
 Devido ao escopo do projeto, principalmente por conta da utilização de um framework frontend ao qual não estou muito familiarizado, não consegui entregar todas as features que gostaria. Porém, acredito que o projeto está bem estruturado e organizado, e que com mais tempo, seria possível implementar todas as features planejadas, trazendo mais segurança e escalabilidade para a aplicação.
+
+Acesse o frontend do Chat App [aqui](https://github.com/Paferreira982/chat-app/tree/develop).
