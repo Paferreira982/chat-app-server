@@ -10,7 +10,8 @@ class MongoDBDriver implements DriverInterface {
     }
 
     public connect() {
-        this.conn.connect('mongodb://localhost:27017/ixcsoft');
+        const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/ixcsoft';
+        this.conn.connect(url);
     }
 
     public async disconnect(): Promise<void> {
