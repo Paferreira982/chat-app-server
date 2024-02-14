@@ -1,12 +1,18 @@
+import { EntityPropsType } from "@/domain/@shared/entities/types";
+
 /**
  * @interface RepositoryInterface
  * @description Contract interface for Repository.
  * */
-export default interface RepositoryInterface<EntityPropsType, UpdatePropsType>{
-    create(data: Omit<EntityPropsType, "state">): Promise<EntityPropsType>;
-    update(data: UpdatePropsType): Promise<EntityPropsType>;
+export default interface RepositoryInterface<EntityPropsType>{
+    create(data: EntityPropsType): Promise<EntityPropsType>;
     delete(id: string): Promise<boolean>;
     findById(id: string): Promise<(EntityPropsType) | null>;
     findAll(): Promise<EntityPropsType[]>;
-    findByEmail(email: string): Promise<(EntityPropsType) | null>;
+    update(data: Partial<EntityPropsType>): Promise<EntityPropsType>;
+}
+
+export interface ExtendedUserRepository {
+    create(data: Omit<EntityPropsType, "status">): Promise<EntityPropsType>;
+    findByEmail(email: string): Promise<any>;
 }
