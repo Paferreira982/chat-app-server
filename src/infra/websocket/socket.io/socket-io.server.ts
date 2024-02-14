@@ -2,6 +2,7 @@ import { Server, Socket } from 'socket.io';
 import http from 'http';
 import UserHandler from './handlers/user.handler';
 import { WebSocketInterface } from '..';
+import MessageHandler from './handlers/message.handler';
 
 class WebSocketServer implements WebSocketInterface {
   private io: Server;
@@ -30,6 +31,7 @@ class WebSocketServer implements WebSocketInterface {
     this.io.on('connection', (socket: Socket) => {
       console.log(`WebSocket client connected: ${socket.id}`);
 
+      MessageHandler.register(this.io, socket);
       UserHandler.register(this.io, socket);
 
       socket.on('disconnect', () => {

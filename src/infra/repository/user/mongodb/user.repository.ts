@@ -8,9 +8,9 @@ import UserSchema from "./user.schema";
  * @description Repository for User Entity.
  * @params EntityPropsType, UpdatePropsType
  */
-class UserRepository implements RepositoryInterface<UserEntityPropsType, UserUpdateDto> {
+class UserRepository implements RepositoryInterface<UserEntityPropsType> {
 
-    constructor() {
+    public constructor() {
         try {
             MongoDBDriver.conn.model('User', UserSchema);
         } catch (error) {
@@ -18,7 +18,7 @@ class UserRepository implements RepositoryInterface<UserEntityPropsType, UserUpd
         }
     }
 
-    public async create(data: Omit<UserEntityPropsType, "state">): Promise<UserEntityPropsType> {
+    public async create(data: Omit<UserEntityPropsType, "status">): Promise<UserEntityPropsType> {
         const UserModel = MongoDBDriver.conn.model('User');
         const instance = new UserModel(data);
         return await instance.save();

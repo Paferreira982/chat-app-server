@@ -1,5 +1,5 @@
 import { Entity } from "@/domain/@shared/entities/entity.abstract";
-import { MessagePropsType, MessageEntityPropsType } from "./types";
+import { MessagePropsType, MessageEntityPropsType, MessageStatus } from "./types";
 
 export class Message extends Entity<MessagePropsType> {
     private constructor({
@@ -8,14 +8,12 @@ export class Message extends Entity<MessagePropsType> {
         destination,
         content,
         status,
-        sentAt,
-        receivedAt,
-        viewedAt,
+        timestamp,
         createdAt,
         updatedAt,
         deletedAt,
     }: MessageEntityPropsType) {
-        const props = { origin, destination, content, status, sentAt, receivedAt, viewedAt };
+        const props = { origin, destination, content, status, timestamp };
         super('Message', { id, createdAt, deletedAt, updatedAt, props });
     }
 
@@ -24,9 +22,7 @@ export class Message extends Entity<MessagePropsType> {
         destination,
         content,
         status,
-        sentAt,
-        receivedAt,
-        viewedAt,
+        timestamp,
     }: MessagePropsType): Message {
         return new Message({
             ...Entity.buildDefault(),
@@ -34,10 +30,37 @@ export class Message extends Entity<MessagePropsType> {
             destination,
             content,
             status,
-            sentAt,
-            receivedAt,
-            viewedAt,
+            timestamp,
         });
+    }
+
+    public static with({
+        id,
+        origin,
+        destination,
+        content,
+        status,
+        timestamp,
+        createdAt,
+        updatedAt,
+        deletedAt,
+    }: MessageEntityPropsType): Message {
+        return new Message({
+            id,
+            origin,
+            destination,
+            content,
+            status,
+            timestamp,
+            createdAt,
+            updatedAt,
+            deletedAt,
+        });
+    }
+
+    // BUSINESS LOGIC
+    public updateStatus(status: MessageStatus): void {
+        this.props.status = status;
     }
 
     // GETTERS & SETTERS
@@ -53,19 +76,11 @@ export class Message extends Entity<MessagePropsType> {
         return this.props.content;
     }
 
-    public get status(): string {
+    public get status(): MessageStatus {
         return this.props.status;
     }
 
-    public get sentAt(): Date {
-        return this.props.sentAt;
-    }
-
-    public get receivedAt(): Date {
-        return this.props.receivedAt;
-    }
-
-    public get viewedAt(): Date {
-        return this.props.viewedAt;
+    public get timestamp(): number {
+        return this.props.timestamp;
     }
 }

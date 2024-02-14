@@ -1,4 +1,4 @@
-import { UserAppStateType, UserEntityPropsType } from "@/domain/user/entities/types";
+import { UserEntityPropsType } from "@/domain/user/entities/types";
 
 export type UserLoginInputDto = {
     email: string;

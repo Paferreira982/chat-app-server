@@ -9,8 +9,6 @@ export const MessageSchema: yup.ObjectSchema<MessagePropsType> =
             destination: yup.string().min(3).max(40).required(),
             content: yup.string().min(1).max(500).required(),
             status: yup.string().oneOf<MessageStatus>(['sent', 'received', 'viewed']).required(),
-            sentAt: yup.date().required(),
-            receivedAt: yup.date().notRequired(),
-            viewedAt: yup.date().notRequired(),
+            timestamp: yup.number().required().min(0),
         }),
     );

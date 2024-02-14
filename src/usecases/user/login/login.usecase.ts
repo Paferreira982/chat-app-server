@@ -1,12 +1,12 @@
 import { Usecase } from "@/usecases/usecase.interface";
 import { UserLoginInputDto, UserLoginOutputDto } from "./login.usecase.dtos";
 import Authenticator from "@/infra/auth/authenticator.interface";
-import RepositoryInterface from "@/infra/repository/repository.interface";
-import { UserEntityPropsType, UserUpdateDto } from "@/domain/user/entities/types";
+import RepositoryInterface, { ExtendedUserRepository } from "@/infra/repository/repository.interface";
+import { UserEntityPropsType } from "@/domain/user/entities/types";
 
 export class LoginUsecase implements Usecase<UserLoginInputDto, UserLoginOutputDto> {
     public constructor(
-        private readonly userRepository: RepositoryInterface<UserEntityPropsType, UserUpdateDto>,
+        private readonly userRepository: RepositoryInterface<UserEntityPropsType> & ExtendedUserRepository,
         private readonly authenticator: Authenticator,
     ) {}
 
