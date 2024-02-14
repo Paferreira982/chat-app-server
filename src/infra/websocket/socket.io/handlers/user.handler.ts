@@ -12,7 +12,6 @@ class UserHandler {
     private getOnlineUsers(socket: Socket) {
         return () => {
             const onlineUsers = OnlineUsersState.get();
-            console.log('Online users:', onlineUsers.length);
             socket.emit('user:online-users', onlineUsers);
         }
     }
@@ -22,7 +21,6 @@ class UserHandler {
             const user: UserLoginOutputDto = rawUser._doc;
             user.status = rawUser.status;
             OnlineUsersState.add({...user, socketId: socket.id});
-            console.log('User added to online users:', user.id);
             socket.broadcast.emit('user:online-users', OnlineUsersState.get());
         }
     }
@@ -30,7 +28,6 @@ class UserHandler {
     public removeOnlineUser(socket: Socket) {
         return (id: string) => {
             OnlineUsersState.remove(id);
-            console.log('User removed from online users:', id);
             socket.broadcast.emit('user:online-users', OnlineUsersState.get());
         }
     }

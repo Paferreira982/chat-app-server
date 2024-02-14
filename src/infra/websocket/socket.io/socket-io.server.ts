@@ -29,14 +29,10 @@ class WebSocketServer implements WebSocketInterface {
 
   private setupSocketEvents() {
     this.io.on('connection', (socket: Socket) => {
-      console.log(`WebSocket client connected: ${socket.id}`);
-
       MessageHandler.register(this.io, socket);
       UserHandler.register(this.io, socket);
 
-      socket.on('disconnect', () => {
-        console.log(`WebSocket client disconnected: ${socket.id}`);
-      });
+      socket.on('disconnect', () => {});
     });
   }
 }

@@ -29,13 +29,10 @@ class OnlineUsers implements StateInterface<SocketUserPropsType> {
                 return user;
             });
 
-            console.log('use already online');
             return;
         }
 
         this.users.push(value);
-        console.log('user added to online users:', this.users.length);
-        this.users.map((user) => console.log("online user", user.id));
     }
     
     public remove(id: string): void {
