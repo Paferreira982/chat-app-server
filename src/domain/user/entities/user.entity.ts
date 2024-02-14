@@ -9,12 +9,12 @@ export class User extends Entity<UserPropsType> {
         email,
         password,
         profileImage,
-        state,
+        status,
         createdAt,
         deletedAt,
         updatedAt,
     }: UserEntityPropsType) {
-        const props = { name, email , password, profileImage, state};
+        const props = { name, email , password, profileImage, status};
         super('User', { id, createdAt, deletedAt, updatedAt, props });
     }
 
@@ -40,7 +40,7 @@ export class User extends Entity<UserPropsType> {
             email,
             password,
             profileImage,
-            state: "offline",
+            status: "offline",
         });
     }
 
@@ -52,7 +52,7 @@ export class User extends Entity<UserPropsType> {
      * @param email User email.
      * @param password User password.
      * @param profileImage User profile image.
-     * @param state User state.
+     * @param status User status.
      * @param createdAt User creation date.
      * @param deletedAt User deletion date.
      * @param updatedAt User update date.
@@ -65,7 +65,7 @@ export class User extends Entity<UserPropsType> {
         email,
         password,
         profileImage,
-        state,
+        status,
         createdAt,
         deletedAt,
         updatedAt,
@@ -76,7 +76,7 @@ export class User extends Entity<UserPropsType> {
             email,
             password,
             profileImage,
-            state,
+            status,
             createdAt,
             deletedAt,
             updatedAt,
@@ -105,8 +105,8 @@ export class User extends Entity<UserPropsType> {
         return this.props.profileImage;
     }
 
-    public get state(): UserStatusType {
-        return this.props.state;
+    public get status(): UserStatusType {
+        return this.props.status;
     }
 }
 

@@ -9,6 +9,6 @@ export const UserSchema: yup.ObjectSchema<UserPropsType> =
             email: yup.string().email().min(5).max(100).required(),
             password: yup.string().min(6).required(),
             profileImage: yup.string().required(),
-            state: yup.string().oneOf<UserStatusType>(['online', 'offline', 'busy', 'away']).required(),
+            status: yup.string().oneOf<UserStatusType>(['online', 'offline', 'busy', 'away']).required(),
         }),
     );

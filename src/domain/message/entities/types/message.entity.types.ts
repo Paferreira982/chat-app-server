@@ -7,9 +7,7 @@ export type MessagePropsType = {
     status: MessageStatus;
     origin: string;
     destination: string;
-    sentAt: Date;
-    receivedAt: Date;
-    viewedAt: Date;
+    timestamp: number;
 }
 
 export type MessageEntityPropsType = MessagePropsType & EntityPropsType;
