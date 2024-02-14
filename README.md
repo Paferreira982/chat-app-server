@@ -69,6 +69,7 @@ Features que foram planejadas, mas devido ao cenário de tempo, não foram imple
 - Cache de requisições;
 - Documentação da API;
 - Facilitar configuração de ambiente com variáveis de ambiente de forma mais clara e através de um arquivo .env;
+- Melhorar o log da aplicação;
 
 ## Conclusão
 Devido ao escopo do projeto, principalmente por conta da utilização de um framework frontend ao qual não estou muito familiarizado, não consegui entregar todas as features que gostaria. Porém, acredito que o projeto está bem estruturado e organizado, e que com mais tempo, seria possível implementar todas as features planejadas, trazendo mais segurança e escalabilidade para a aplicação.
