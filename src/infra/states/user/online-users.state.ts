@@ -45,6 +45,10 @@ class OnlineUsers implements StateInterface<SocketUserPropsType> {
     public removeBySocketId(socketId: string): void {
         this.users = this.users.filter((user) => user.socketId !== socketId);
     }
+
+    public isOnline(id: string): boolean {
+        return this.users.some((user) => user.id === id);
+    }
 }
 
 export default new OnlineUsers();

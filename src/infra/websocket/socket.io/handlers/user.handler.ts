@@ -20,7 +20,7 @@ class UserHandler {
     private addOnlineUser(socket: Socket) {
         return (rawUser: any) => {
             const user: UserLoginOutputDto = rawUser._doc;
-            user.state = rawUser.state;
+            user.status = rawUser.status;
             OnlineUsersState.add({...user, socketId: socket.id});
             console.log('User added to online users:', user.id);
             socket.broadcast.emit('user:online-users', OnlineUsersState.get());
